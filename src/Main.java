@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main
 {
@@ -31,7 +32,7 @@ public class Main
     Main main = new Main();
     List<Library> libraries = main.readLibraries(FILE_NAME);
     List<Library> processedLibraries = main.getProcessedLibraries(libraries);
-
+    main.printProcessedLibrariesToFile(processedLibraries);
   }
 
   public List<Library> getProcessedLibraries(List<Library> libraries)
@@ -65,8 +66,11 @@ public class Main
       for (Library library : libraries)
       {
         writer.write(String.format("\n%d %d", library.id, library.books.size()));
-        StringBuilder sb = new StringBuilder();
-        writer.write(String.format("\n%d %d", library.id, library.books.size()));
+        String res = library.books.stream()
+            .map(book -> book.id)
+            .map(String::valueOf)
+            .collect(Collectors.joining(" "));
+        writer.write("\n" + res);
       }
     }
   }
@@ -90,7 +94,7 @@ public class Main
       days = scanner.nextInt();
       for (int i = 0; i < booksCount; i++)
       {
-        booksById.put(i, new Book(scanner.nextInt()));
+        booksById.put(i, new Book(i, scanner.nextInt()));
       }
 
       for (int i = 0; i < librariesCount; i++)
@@ -130,6 +134,7 @@ public class Main
   {
     public Library(int id, int booksCount, int signup, int booksPerDay)
     {
+      this.id = id;
       this.booksCount = booksCount;
       this.signup = signup;
       this.booksPerDay = booksPerDay;
@@ -140,7 +145,6 @@ public class Main
     int signup;
     int booksPerDay;
     double score;
-//    Map<Integer, Book> bookById = new HashMap<>();
     List<Book> books = new ArrayList<>();
 
     @Override
@@ -159,11 +163,13 @@ public class Main
   public class Book
   {
 
-    public Book(int score)
+    public Book(int id, int score)
     {
+      this.id = id;
       this.score = score;
     }
 
+    int id;
     int score;
 
     @Override
