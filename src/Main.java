@@ -10,7 +10,10 @@ public class Main
 {
 
   public static String FILE_NAME = "a_example.txt";
-//  public static String FILE_NAME = "b_read_on.txt";
+  public static int booksCount;
+  public static int librariesCount;
+  public static int days;
+  //  public static String FILE_NAME = "b_read_on.txt";
 //  public static String FILE_NAME = "c_incunabula.txt";
 //  public static String FILE_NAME = "d_tough_choices.txt";
 //  public static String FILE_NAME = "e_so_many_books.txt";
@@ -29,13 +32,13 @@ public class Main
     try (Scanner scanner = new Scanner(Paths.get(fileName)))
     {
       Map<Integer, Book> booksById = new HashMap<>();
-      int booksCount = scanner.nextInt();
-      int librariesCount = scanner.nextInt();
-      int days = scanner.nextInt();
 
+      booksCount = scanner.nextInt();
+      librariesCount = scanner.nextInt();
+      days = scanner.nextInt();
       for (int i = 0; i < booksCount; i++)
       {
-        booksById.put(scanner.nextInt(), new Book(scanner.nextInt()));
+        booksById.put(i, new Book(scanner.nextInt()));
       }
 
       for (int i = 0; i < librariesCount; i++)
@@ -46,6 +49,7 @@ public class Main
           int bookId = scanner.nextInt();
           library.bookById.put(bookId, booksById.get(bookId));
         }
+        libraries.add(library);
       }
     }
 
