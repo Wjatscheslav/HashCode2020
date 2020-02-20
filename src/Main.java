@@ -1,5 +1,3 @@
-
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -31,14 +29,7 @@ public class Main
   public static String FILE_NAME_E = "e_so_many_books";
   public static String FILE_NAME_F = "f_libraries_of_the_world";
 
-//  public static String FILE_NAME_OUT_A = "out_a_example.txt";
-//  public static String FILE_NAME_OUT_B = "out_b_read_on.txt";
-//  public static String FILE_NAME_OUT_C = "out_c_incunabula.txt";
-//  public static String FILE_NAME_OUT_D = "out_d_tough_choices.txt";
-//  public static String FILE_NAME_OUT_E = "out_e_so_many_books.txt";
-//  public static String FILE_NAME_OUT_F = "out_f_libraries_of_the_world.txt";
-
-  public static void main(String[] args) throws IOException
+  public static void main(String[] args)
   {
     Main main = new Main();
     Arrays.asList(FILE_NAME_A, FILE_NAME_B, FILE_NAME_C, FILE_NAME_D, FILE_NAME_E, FILE_NAME_F)
@@ -145,11 +136,7 @@ public class Main
 
   public int calculateScore(Library library)
   {
-//    return (days - library.signup) / (library.booksPerDay * calculateTotalScore(library));
-
-//    return calculateTotalScore(library) / (library.signup + (library.booksCount / library.booksPerDay));
-
-    return (days- library.signup)/((library.booksCount/ library.booksPerDay)*(library.booksCount/calculateTotalScore(library)));
+    return calculateTotalScore(library) / (library.signup + (library.booksCount / library.booksPerDay));
   }
 
   public int calculateTotalScore(Library library)
@@ -175,18 +162,6 @@ public class Main
     int booksPerDay;
     double score;
     List<Book> books = new ArrayList<>();
-
-    @Override
-    public String toString()
-    {
-      return "Library{" +
-          "booksCount=" + booksCount +
-          ", signup=" + signup +
-          ", booksPerDay=" + booksPerDay +
-          ", score=" + score +
-          ", books=" + books +
-          '}';
-    }
   }
 
   public class Book
@@ -200,14 +175,6 @@ public class Main
 
     int id;
     int score;
-
-    @Override
-    public String toString()
-    {
-      return "Book{" +
-          "score=" + score +
-          '}';
-    }
   }
 
 }
