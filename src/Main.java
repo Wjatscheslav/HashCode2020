@@ -19,7 +19,7 @@ public class Main
   public static int booksCount;
   public static int librariesCount;
   public static int days;
-  public List<Book> booksToScan;
+  public List<Book> booksToScan = new ArrayList<>();
   //  public static String FILE_NAME = "b_read_on.txt";
 //  public static String FILE_NAME = "c_incunabula.txt";
 //  public static String FILE_NAME = "d_tough_choices.txt";
@@ -31,6 +31,7 @@ public class Main
     Main main = new Main();
     List<Library> libraries = main.readLibraries(FILE_NAME);
     List<Library> processedLibraries = main.getProcessedLibraries(libraries);
+
   }
 
   public List<Library> getProcessedLibraries(List<Library> libraries)
@@ -140,7 +141,7 @@ public class Main
     int booksPerDay;
     double score;
 //    Map<Integer, Book> bookById = new HashMap<>();
-    List<Book> books;
+    List<Book> books = new ArrayList<>();
 
     @Override
     public String toString()
